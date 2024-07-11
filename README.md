@@ -43,7 +43,7 @@ This repository contains all of the data and code we will be using in the exerci
 
 <p align="center" width="100%">
 
-![](img/readme-img-2.png){ width=50% }
+![](img/readme-img-2.png)
 
 </p>
 
@@ -52,7 +52,7 @@ This repository contains all of the data and code we will be using in the exerci
 
 <p align="center" width="100%">
 
-![](img/readme-img-3.png){ width=50% }
+![](img/readme-img-3.png)
 
 </p>
 
@@ -68,7 +68,7 @@ We will make use of several libraries on the short course that should be install
 
 <p align="center" width="100%">
 
-  ![](img/readme-img-4.png){ width=50% }
+  ![](img/readme-img-4.png)
 
 </p>
   
@@ -78,7 +78,7 @@ We will make use of several libraries on the short course that should be install
   
 <p align="center" width="100%">
   
-  ![](img/readme-img-5.png){ width=50% }
+  ![](img/readme-img-5.png)
   
 </p>
   
