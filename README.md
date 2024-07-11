@@ -1,3 +1,6 @@
+
+![](img/smi-header.png)
+
 # An Introduction to Structural Equation Modelling Using R
 
 #### Dr. Calum J. R. Webb, Sheffield Methods Institute, the University of Sheffield
@@ -26,6 +29,60 @@ In short:
 
 ## Downloading a copy of the repository
 
+This repository contains all of the data and code we will be using in the exercises throughout the short course. You will need to download a copy of the repository in advance.
+
+1) At the top of this page ([https://github.com/cjrwebb/sem-pgrt](https://github.com/cjrwebb/sem-pgrt)), you should see a green button that says "Code" with a drop-down arrow. Click on the drop-down arrow, and then click "Download ZIP". You shouldn't need an account.
+
+![](img/readme-img-1.png)
 
 
+2) Next, unzip the zip folder and open it in your file viewer. For Mac users, you can just click on the zip file and MacOS will automatically unzip it in your downloads folder. You can then open the unzipped folder. For Windows users, you may need to find the zip folder in your downloads folder, right click it, and then click "Extract all...", or use the unzip option on the ribbon menu. For Ubuntu/Debian, you should be able to right click the file and select "Extract here".
 
+3) Double-click the `sem-pgrt.Rproj` 'blue box' icon R project file to open the course R project in Rstudio.
+
+
+<p align="center" width="100%">
+
+![](img/readme-img-2.png){ width=50% }
+
+</p>
+
+
+4) In the bottom right panel (by default), make sure you are on the "Files" tab, then open the `prep-script.R` file by clicking on its name. This should open in the top left of your Rstudio window. You may also want to open up the three scripts we will be using through the course: `sem-1.R`, `sem-2.R`, and `sem-3.R`.
+
+<p align="center" width="100%">
+
+![](img/readme-img-3.png){ width=50% }
+
+</p>
+
+## Installing required packages and dependencies
+
+We will make use of several libraries on the short course that should be installed **prior to the start of the course**. I would recommend trying to install them at least a few days before the start of the course so that you have some time to troubleshoot any problems, or to find out if the problems are likely to be very disruptive to your learning or not.
+
+1) Navigate to the `prep-script.R` file that you opened in your RStudio window. **Carefully read** and follow all of the instructions to install required dependencies and packages.
+
+2) If you are completely new to `R`, you should know that in order to run code you need to either:
+
+  a) Highlight all of the code that you want to run and then click "Run" in the top right of the script pane (see image)
+
+<p align="center" width="100%">
+
+  ![](img/readme-img-4.png){ width=50% }
+
+</p>
+  
+  b) **Or**, ensure your typing cursor (flashing vertical bar | ) is on the line of code, or that the code has been highlighted, and then press CMD+Enter (on Mac) or Ctrl+Enter (on Windows/Debian/Ubuntu) to run the code.
+  
+  c) **Or**, copy and paste the code from your script to your console (by default, in the bottom left of Rstudio), and then press Enter.
+  
+<p align="center" width="100%">
+  
+  ![](img/readme-img-5.png){ width=50% }
+  
+</p>
+  
+Once you have completed all of the steps in the `prep-script.R` file, you are ready for the course. You are welcome to explore the `sem-1.R`, `sem-2.R`, and `sem-3.R` scripts in advance of the course. 
+  
+  
+<br><br><br>
