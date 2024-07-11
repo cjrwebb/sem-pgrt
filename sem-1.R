@@ -196,7 +196,7 @@ tidy_dagitty(dag2) %>%
 #' The *total* effect of income would be a1*b1 + a2*b2 + c
 #' 
 #' We can find these in the summary output. For example, a1 would be
-#' the regression of investment on income (income ~ investment)
+#' the regression of investment on income (investment ~ income)
 
 summary(mod2)
 

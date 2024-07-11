@@ -170,22 +170,24 @@ lavaanPlot::lavaanPlot(model = mod2, coefs = TRUE, stand = TRUE)
 #' 
 #'  * For a 1 unit increase in the stress latent variable, we would 
 #'    expect the response to question 1 to be 1 point higher,
-#'    the response for question 2 to be 1.27 points higher, the
-#'    response to question 3 to be 0.943 higher, the response for
-#'    question 4 to be 1.23 higher, and the response to question
-#'    5 to be 1.07 points higher. These are called *factor loadings*
+#'    the response for question 2 to be 0.866 points higher, the
+#'    response to question 3 to be 0.764 higher, the response for
+#'    question 4 to be 0.931 higher, and the response to question
+#'    5 to be 0.993 points higher. These are called *factor loadings*
 #'    
 #'  * Because they are all on the same scale this means we can say
 #'    that the stress latent variable is probably doing a good job of
 #'    approximating all of the indicator variables, but the standardised
 #'    factor loadings can confirm this. We can see that the latent factor
-#'    was most strongly associated with responses to question 2 (undermined
-#'    parenting) 0.92, followed by question 4 (unable to use parenting 
-#'    skills) 0.89, followed by question 5 (reliance on others) 0.77,
-#'    followed by question 1 (disagreements about parenting) 0.73, followed
-#'    by question 3 (fear for safety) at 0.68.
+#'    was most strongly associated with responses to question 1 (disagreements
+#'    with parenting) 0.906, followed by question 5 (worry about relying on
+#'    others) 0.88, followed by question 4 (unable to use skills) 0.831,
+#'    followed by question 2 (undermining parenting) 0.77, followed
+#'    by question 3 (fear for safety) at 0.69.
 #'    
-#'  
+#'  * We can also use the R-squared statistics to describe the extent of the
+#'    variance in our indicator variables that a single latent factor is 
+#'    able to explain.
 
 #' To better understand the relationship between the latent variable and
 #' the underlying indicators, we can save the latent variable scores and 
@@ -255,6 +257,104 @@ summary(mod2, standardized = TRUE, rsquare = TRUE)
 # stress score for question 1 by 2.479 points.
 
 
+#' Note also that if we want to make your links between our factor
+#' and our indicators follow a probit distribution (which may fit 
+#' much better and be more appropriate if we have ordinal indicators
+#' like here), we can just add them to the ordered grouping.
+
+mod2_ordinal <- "
+  
+  # Latent variables are defined using =~
+  stress =~ stress_q1 + stress_q2 + stress_q3 + stress_q4 + stress_q5
+
+"
+
+mod2_ordinal <- lavaan::sem(mod2_ordinal, data = d1, std.lv = TRUE, 
+                    ordered = c("stress_q1", "stress_q2", "stress_q3", 
+                                "stress_q4", "stress_q5"))
+summary(mod2_ordinal, standardized = TRUE, rsquare = TRUE)
+
+#' Note that we get slightly better R-squared scores here because
+#' our predictions can no longer be impossible to select values
+#' (e.g. 2.5 on a 10 point scale). Note that the latent variable
+#' is *continuous*, which can be very convenient for interpretation.
+
+
+#' Interpreting probit models with multiple outcomes is somewhat more difficult
+#' but the main coefficients can be interpreted as Z-scores, in other words,
+#' as changes in standard deviation towards or away from higher or lower
+#' values.
+#' 
+#' To get a sense of what is "going on" in the relationship, it can be helpful
+#' to use visualisation of the cumulative probability of being in each 
+#' category of response for a 1 standard deviation increase in the latent variable.
+#' This is a lot more difficult but a lot more intuitive!
+
+
+#' Extract the threshold values on the probit scale
+thresholds <- as_tibble(parameterestimates(mod2_ordinal)) %>%
+  filter(op == "|")
+
+# Convert the thresholds into cumulative probability
+thresholds <- thresholds %>%
+  mutate(
+    prob = pnorm(est)
+  )
+
+# Plot the distribution of responses
+ggplot() + 
+  xlim(min(thresholds$est), 3) + 
+  geom_function(fun = pnorm) +
+  geom_segment(data = thresholds %>% filter(lhs == "stress_q1"), 
+               aes(x = est, xend = est, y = 0, yend = prob)) +
+  geom_text(data = thresholds %>% filter(lhs == "stress_q1"), 
+            aes(x = est + 0.1, y = 0.05, label = rhs)) +
+  annotate("curve", x = 0, xend = 0+0.915, y = pnorm(0), yend = pnorm(0+0.915), 
+           curvature = -0.5) +
+  annotate("point", x = 0, y = pnorm(0), colour = "pink") +
+  annotate("point", x = 0 + 0.915, y = pnorm(0 + 0.915), colour = "firebrick") +
+  theme_minimal()
+
+#' So we might say that "for a 1 standard deviation increase
+#' in the latent stress variable, we'd predict someone who
+#' answered 5 to the first stress questionnaire score about
+#' disgreements about parenting to instead be predicted to 
+#' answer 8.
+
+#' We can extent this to produce a nice plot for the entire range of
+#' questions on their ordinal scales
+
+loadings <- as_tibble(parameterestimates(mod2_ordinal)) %>%
+  filter(op == "=~")
+
+loadings <- loadings %>%
+  mutate(
+    lhs = rhs
+  )
+
+ggplot() + 
+  xlim(min(thresholds$est), 3) + 
+  geom_function(fun = pnorm) +
+  geom_text(data = thresholds, 
+            aes(x = est + 0.15, y = 0.05, label = str_remove(rhs, "t") )) +
+  geom_segment(data = thresholds, 
+               aes(x = est, xend = est, y = 0, yend = prob)) +
+  geom_curve(data = loadings, aes(x = 0, xend = 0+est, y = pnorm(0), yend = pnorm(0+est)), 
+             curvature = -0.5) +
+  geom_point(data = loadings, aes(x = 0, y = pnorm(0)), colour = "pink") +
+  geom_point(data = loadings, aes(x = 0 + est, y = pnorm(0 + est)), colour = "firebrick") +
+  facet_wrap(~lhs) +
+  theme_minimal()
+
+#' Here you can see how the impact on the third stress question is a lot
+#' smaller.
+
+#' We're going to stick with treating these variables as 'pseudo-continuous'
+#' going forward, but you shouldn't be afraid to use probit links between
+#' your factors and your manifest variables where appropriate! They are
+#' still quite interpretable as changes in standard deviation.
+
+
 
 # Part 3: Model fit and latent variables ------------------------------------------
 
@@ -268,11 +368,13 @@ summary(mod2, standardized = TRUE, rsquare = TRUE)
 #' latent factor
 #' 
 #' Poor model fit = a bad fit to the correlations in the data overall, even
-#' if the factor loadings look okay.
+#' if the factor loadings look okay. It is likely that actually there is
+#' more than one factor/a more complex process underlying the generation 
+#' of these indicators.
 #' 
 #' Good model fit, poor factor loadings = a good fit to the data overall, 
 #' but probably because there are not many strong relationships in the data
-#' to begin with (you're basically modelling random noise)
+#' to begin with (you're basically modelling unrelated random noise)
 #' 
 #' Poor model fit, good factor loadings = some of your indicators are not
 #' necessarily closely linked to each other, while others are, so the factor

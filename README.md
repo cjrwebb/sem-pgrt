@@ -11,7 +11,7 @@ The course is designed to be 'hands-on' to ensure that you are able to apply the
 
 If you are new to `R` and `Rstudio`, you will first need to install and configure the statistical programming language and the GUI on your device. 
 
-Completing all of the setting up steps for the course should take no longer than an hour.
+Completing all of the setting up steps for the course should take no longer than an hour. I have made my best effort to ensure that the instructions are as detailed as possible and that all of the code and steps have been trialed on a fresh installation of `R`, but if you come across any problems, please do let me know.
 
 
 ## Installing R and Rstudio
