@@ -1,0 +1,20 @@
+validity_varnames,validity_varlabels
+stress_q1,"How often have you gotten into a disagreement with a co-parent or family member about the parenting of your child(ren)? (10 Almost daily, 0 Never)"
+stress_q2,"To what extent do you agree with the statement: 'my co-parents or family members often undermine the parenting of my child/children'? (10 Entirely, 0 Not at all)"
+stress_q3,"To what extent do you agree with the statement: 'I have had to think seriously about my own and my child(ren)'s safety because of some of my relationships'? (10 Entirely, 0 Not at all)"
+stress_q4,"To what extent do you agree with the statement: 'I have the skills to be a great parent, but I often feel like there are too many things that get in the way of me using them' (10 Entirely, 0 Not at all)"
+stress_q5,"To what extent do you agree with the statement: 'I often worry about how much I need to rely on others when it comes to raising my children' (10 Entirely, 0 Not at all)"
+pss_q1,Having child(ren) has meant having too few choices and too little control over my life
+pss_q2,I sometimes worry whether I am doing enough for my child(ren).
+pss_q3,Having child(ren) has been a financial burden.
+pss_q4,It is difficult to balance different responsibilities because of my child(ren).
+panx_q1,I am worried or anxious when I am with my child
+panx_q2,My child can sense that I am tense or nervous.
+panx_q3,I am on my guard and attentive to danger when me and my child are out together.
+panx_q4,I tell my child that people are not to be trusted.
+panx_q5,"Because of my anxiety, I cancel things me and my child had planned on doing."
+preq_q1,I have someone who I can talk to about child-raising.
+preq_q2,I'm not worried about raising my child without anyone's opinion.
+preq_q3,I can do anything that my child needs
+preq_q4,My child makes me feel energized.
+preq_q5,There are people who would help my child in the future.
