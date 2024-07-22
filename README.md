@@ -5,6 +5,10 @@
 
 #### Dr. Calum J. R. Webb, Sheffield Methods Institute, the University of Sheffield
 
+
+**Link to slides [here](https://calumwebb.co.uk/teaching/pgrt/intro-to-sem/slides/#1)**
+
+
 This repository contains the course materials for the one day training course *'An Introduction to Structural Equation Modelling Using R'*, for postgraduate research students and research professionals. These materials should be downloaded prior to the start of the course, and the instructions in the `prep-script.R` file should be followed to ensure that your device is ready for the training course. Instructions are provided for computers running Windows, Mac, or Debian/Ubuntu systems. Other devices (iPhones, iPads, Android-based devices) are not suitable for the training course unless you also have access to an Rstudio server and can confidently configure an Rstudio server instance. 
 
 The course is designed to be 'hands-on' to ensure that you are able to apply the statistical techniques and quantitative methods that are taught in a real research context.
